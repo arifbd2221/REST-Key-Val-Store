@@ -1,19 +1,18 @@
 from rest_framework.views import APIView
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
-from django.views.decorators.vary import vary_on_cookie
-from django.core import serializers
 from rest_framework.response import Response
 from django.shortcuts import HttpResponse
 from rest_framework import status
-
+from memcached_stats import MemcachedStats
 from django.conf import settings
-from django.core.cache import cache,caches
+from django.core.cache import cache
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
+from django.http import JsonResponse
 
-import json
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
+mem = MemcachedStats()
 
 
 class KeyVal(APIView):
@@ -21,6 +20,11 @@ class KeyVal(APIView):
     @method_decorator(cache_page(CACHE_TTL))
     def get(self,request,format=None):
         keys = request.query_params.get('keys')
+        allcaches = dict()
+
+        for k in mem.keys(): # getting all keys
+            key = k.split(':')[2]
+            allcaches[key] = cache.get(key) # populating all cache values
 
         if keys is not None:
             keyList = keys.split(',') # extracting keys from query string
@@ -31,15 +35,14 @@ class KeyVal(APIView):
 
             for k in keyList: # reset the TTL of those keys
                 cache.touch(k,CACHE_TTL) # reset TTL
-            
-            return Response(json.dumps(result),status=status.HTTP_200_OK)
+
+            return HttpResponse(JsonResponse(result),status=status.HTTP_200_OK)
         
-        allcaches = caches.all() # fetching all caches
         
         if allcaches is None:
             return Response('No keys found',status=status.HTTP_404_NOT_FOUND)
 
-        return Response(json.dumps(allcaches),status=status.HTTP_200_OK)
+        return HttpResponse(JsonResponse(allcaches),status=status.HTTP_200_OK)
 
         
     
