@@ -30,7 +30,8 @@ Then inside setting.py put these code snippets
   2. You can set LOCATION as per your requirement.
   
   Once the cache is set up, the simplest way to use caching is to cache your entire site. You’ll need to add
-  'django.middleware.cache.UpdateCacheMiddleware' and 'django.middleware.cache.FetchFromCacheMiddleware' to your MIDDLEWARE setting.py
+  ##### 'django.middleware.cache.UpdateCacheMiddleware' and ##### 'django.middleware.cache.FetchFromCacheMiddleware' 
+  to your MIDDLEWARE setting.py
   ```
   MIDDLEWARE = [
     'django.middleware.cache.UpdateCacheMiddleware',
