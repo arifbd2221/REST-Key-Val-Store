@@ -40,6 +40,16 @@ Then inside setting.py put these code snippets
  ```
  ## Rest Api Uses
   ***
-  hit [localhost:8000/values/](http://127.0.0.1:8000/values/)
-  now in the postman explorer you can perform following queries
+  Hit [localhost:8000/values/](http://127.0.0.1:8000/values/)
+  Now in the postman explorer you can perform following queries
+  ***
+  ***
+  Get all the values of the store.
+  1. GET /values
+  Get one or more specific values from the store
+  2. GET /values?keys=key1,key2
+  Save a value in the store.
+  3. POST /values
+  Update a value in the store
+  4. PATCH /values
   ***
