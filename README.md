@@ -44,16 +44,16 @@ Then inside setting.py put these code snippets
   Now in the postman explorer you can perform following queries
   ***
   ***
-  Get all the values of the store.
+  > Get all the values of the store.
   1. GET /values
-  Get one or more specific values from the store.
+  > Get one or more specific values from the store.
   2. GET /values?keys=key1,key2
-  Save a value in the store.
+  > Save a value in the store.
   3. POST /values
   ```
   request: {key1: value1, key2: value2..}
   ```
-  Update a value in the store.
+  > Update a value in the store.
   4. PATCH /values
   ```
   request: {key1: value1, key2: value2..}
