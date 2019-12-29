@@ -26,6 +26,15 @@ Then inside setting.py put these code snippets
     }
   }
   ```
-  -> You can set CACHE_TTL as per your requirement.
-  -> You can set LOCATION as per your requirement.
+  ->You can set CACHE_TTL as per your requirement.
+  ->You can set LOCATION as per your requirement.
  ***
+ 
+ Now run the following command to create django models table inside sqlite database.
+ ```
+ python manage.py migrate
+ ```
+ Finally run the below command to start the server
+ ```
+ python manage.py runserver
+ ```
