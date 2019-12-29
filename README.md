@@ -30,7 +30,7 @@ Then inside setting.py put these code snippets
   2. You can set LOCATION as per your requirement.
   
   Once the cache is set up, the simplest way to use caching is to cache your entire site. You’ll need to add
-  ##### 'django.middleware.cache.UpdateCacheMiddleware' and ##### 'django.middleware.cache.FetchFromCacheMiddleware' 
+  ##### 'django.middleware.cache.UpdateCacheMiddleware' and 'django.middleware.cache.FetchFromCacheMiddleware' 
   to your MIDDLEWARE setting.py
   ```
   MIDDLEWARE = [
@@ -39,6 +39,7 @@ Then inside setting.py put these code snippets
     'django.middleware.cache.FetchFromCacheMiddleware',
 ]
   ```
+  ##### Note: The “update” middleware must be first in the list, and the “fetch” middleware must be last.
  ***
  
  Now run the following command to create django models table inside sqlite database.
