@@ -28,6 +28,16 @@ Then inside setting.py put these code snippets
   ```
   1. You can set CACHE_TTL as per your requirement.
   2. You can set LOCATION as per your requirement.
+  
+  > Once the cache is set up, the simplest way to use caching is to cache your entire site. You’ll need to add
+  > 'django.middleware.cache.UpdateCacheMiddleware' and 'django.middleware.cache.FetchFromCacheMiddleware' to your MIDDLEWARE setting.py
+  ```
+  MIDDLEWARE = [
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
+]
+  ```
  ***
  
  Now run the following command to create django models table inside sqlite database.
