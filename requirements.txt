@@ -1,4 +1,4 @@
-Django==2.2.7
+Django==2.2.20
 djangorestframework==3.10.3
 python-memcached==1.59
 python-memcached-stats==0.1
